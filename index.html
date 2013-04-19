@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <script src="./js/keypress-1.0.4.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script>
+	divx=0;
+	keypress.combo("left", function() {
+		console.log("You pressed left");
+		console.log("Position: " + $("#kicker").position().left);
+	});
+	keypress.combo("right", function() {
+		divx = divx + 10;
+		$('#kicker').css({left: '50'});
+		console.log("You Pressed right");
+	});
+	</script>
+  </head>
+  <body>
+	<div id="kicker">
+		<img src="./img/kicker.jpg">
+	</div>
+  </body>
+</html>
