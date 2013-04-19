@@ -5,19 +5,23 @@
 	<script>
 	divx=0;
 	keypress.combo("left", function() {
+		divx = divx - 10;
+		$('#kicker').offset({left: divx });
 		console.log("You pressed left");
 		console.log("Position: " + $("#kicker").position().left);
 	});
 	keypress.combo("right", function() {
 		divx = divx + 10;
-		$('#kicker').css({left: '50 '});
+		$('#kicker').offset({left: divx });
 		console.log("You Pressed right");
 	});
 	</script>
   </head>
   <body>
+	<div style="width: 500px;">
 	<div id="kicker">
 		<img src="./img/kicker.jpg">
+	</div>
 	</div>
   </body>
 </html>
