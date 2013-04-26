@@ -1,0 +1,10 @@
+git add <filename>
+git commit -m '<description>'
+git push
+// login
+
+git pull
+
+cd <directory>
+mate .
+
