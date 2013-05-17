@@ -1,0 +1,38 @@
+<html>
+  <head>
+	<script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
+    <script src="./js/keypress-1.0.4.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script>
+	var myRootRef = new Firebase('https://soccergame.firebaseio.com/');
+	var kickerRef = myRootRef.child('Kicker');
+	divx=0;
+	
+	var dataRef = new Firebase('https://soccergame.firebaseio.com/Kicker');
+	dataRef.on('value', function(snapshot) {
+	  console.log(snapshot.child('x').val());
+	});
+	
+	keypress.combo("left", function() {
+		divx = divx - 10;
+		$('#kicker').offset({left: divx });
+		kickerRef.set({x : divx, y : 0}); 
+		console.log("You pressed left");
+		console.log("Position: " + $("#kicker").position().left);
+	});
+	keypress.combo("right", function() {
+		divx = divx + 10;
+		kickerRef.set({x : divx, y : 0}); 
+		$('#kicker').offset({left: divx });
+		console.log("You Pressed right");
+	});
+	</script>
+  </head>
+  <body>
+	<div style="width: 500px;">
+	<div id="kicker">
+		<img src="./img/kicker.jpg">
+	</div>
+	</div>
+  </body>
+</html>
