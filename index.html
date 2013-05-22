@@ -1,27 +1,79 @@
 <html>
   <head>
+	<script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
     <script src="./js/keypress-1.0.4.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script>
-	divx=0;
-	keypress.combo("left", function() {
-		divx = divx - 10;
-		$('#kicker').offset({left: divx });
+	
+	
+	var int=self.setInterval(function(){clock()},16);
+	function clock()
+	  {
+	  var d = new Date();
+	var n = d.getMilliseconds();
+	  document.getElementById("clock").value=n;
+	
+		divy = divy + 1;
+		$('#soccerball').offset({left: divy });
+	  }
+
+	function copyText()
+	{
+	document.getElementById("id1").play();
+
+
+
+	}
+	
+	
+	var myRootRef = new Firebase('https://soccergame.firebaseio.com/');
+	var kickerRef = myRootRef.child('Kicker');
+	divy=0;
+	keypress.combo("up", function() {
+		divy = divy - 10;
+		$('#kicker').offset({top: divy }); // draw
+		kickerRef.set({x : divy, y : 0}); // firebase
 		console.log("You pressed left");
 		console.log("Position: " + $("#kicker").position().left);
 	});
-	keypress.combo("right", function() {
-		divx = divx + 10;
-		$('#kicker').offset({left: divx });
+	keypress.combo("down", function() {
+		divy = divy + 10;
+		$('#kicker').offset({top: divy }); // draw
+		kickerRef.set({x : divy, y : 0});  //firebas
 		console.log("You Pressed right");
+		
+	
 	});
-	console.log("You Pressed Up");
-	</script>
+	
+	// Add a ball
+	// Add a second player
+	// Add the music
+	</script>	
+	
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Untitled Document</title>
+	</head>
+	
+	
   </head>
   <body>
+	
+	
+	<input type="text" id="clock">
+	<audio controls id="id1" >
+	  <source src="pong.mp3" type="audio/mpeg">
+	</audio>
+	<button onclick="copyText()">Copy Text</button>
+	
+	
 	<div style="width: 500px;">
 	<div id="kicker">
 		<img src="./img/kicker.jpg">
+	</div>
+	
+	<div id="soccerball">
+		<img src="./img/soccer.png" width="50" height="50">
 	</div>
 	</div>
   </body>
